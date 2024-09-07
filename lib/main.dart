@@ -4,8 +4,15 @@ void main() => runApp(MaterialApp(
   home: NinjaCard(),
 ));
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
   const NinjaCard({super.key});
+
+  @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  int ninjaLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,7 @@ class NinjaCard extends StatelessWidget {
           children: <Widget>[
             Center(
               child: CircleAvatar(
-                backgroundImage: AssetImage('assets/kira2.jpg'),
+                backgroundImage: AssetImage('assets/Picture1.png'),
                 radius: 80,
               ),
             ),
@@ -52,14 +59,14 @@ class NinjaCard extends StatelessWidget {
             SizedBox(height: 30),
             //----------------------------------------------------
             Text(
-              'AGE',
+              'CURRENT LEVEL',
               style: TextStyle(
                   color: Colors.grey,
                   letterSpacing: 2.0),
             ),
             SizedBox(height: 10,),
             Text(
-              '25',
+              '$ninjaLevel',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -83,12 +90,40 @@ class NinjaCard extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 200,),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  ninjaLevel = 0;
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.amberAccent,
+              ),
+              child: Text(
+                'RESET',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),))
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+          },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.amberAccent,
       ),
     );
   }
 }
+
+
 
 
 
